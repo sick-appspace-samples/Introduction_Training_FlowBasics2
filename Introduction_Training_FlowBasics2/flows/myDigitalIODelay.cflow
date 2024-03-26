@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<glue>
+  <info>
+    <usage>cflow</usage>
+  </info>
+  <sourceblocks>
+    <block type="Provider" name="S1DI1" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S1DI1" x="157" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="157" docked="true">
+      <parameters>
+        <param name="Logic">
+          <val>ACTIVE_HIGH</val>
+        </param>
+        <param name="DebounceMode">
+          <val>TIME_MS</val>
+        </param>
+        <param name="DebounceValue">
+          <val>0</val>
+        </param>
+      </parameters>
+    </block>
+    <block type="Function" name="delay" userLabel="" userNote="" function="delayedSignal=DigitalLogic.Delay.delay(signal)" x="166" y="520" height="140" width="70" path="DigitalLogic.Delay.delay" blocksEditorX="418" blocksEditorY="166" docked="false">
+      <parameters>
+        <param name="DelayTime">
+          <val>1000</val>
+        </param>
+        <param name="DelayDistance">
+          <val>0</val>
+        </param>
+        <param name="MaxQueueSize">
+          <val>0</val>
+        </param>
+      </parameters>
+    </block>
+    <block type="Consumer" name="S2DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S2DO1" x="157" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="157" docked="true"/>
+    <block type="Provider" name="S1DI2" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S1DI2" x="234" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="234" docked="true"/>
+    <block type="Provider" name="S4DI1" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S4DI1" x="311" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="311" docked="true"/>
+    <block type="Provider" name="S4DI2" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S4DI2" x="388" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="388" docked="true"/>
+    <block type="Consumer" name="S3DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S3DO1" x="234" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="234" docked="true"/>
+    <block type="Function" name="not" userLabel="" userNote="" function="level=DigitalLogic.Gate.not(levelA)" x="251" y="651" height="140" width="70" path="DigitalLogic.Gate.not" blocksEditorX="523" blocksEditorY="251" docked="false"/>
+    <block type="Consumer" name="S5DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S5DO1" x="311" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="311" docked="true"/>
+    <block type="Consumer" name="S6DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S6DO1" x="388" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="388" docked="true"/>
+    <block type="Function" name="and" userLabel="" userNote="" function="level=DigitalLogic.Gate.and(levelA, levelB, levelC, levelD)" x="320" y="473" height="140" width="70" path="DigitalLogic.Gate.and" blocksEditorX="380" blocksEditorY="320" docked="false"/>
+    <block type="Function" name="nand" userLabel="" userNote="" function="level=DigitalLogic.Gate.nand(levelA, levelB, levelC, levelD)" x="388" y="769" height="140" width="70" path="DigitalLogic.Gate.nand" blocksEditorX="618" blocksEditorY="388" docked="false"/>
+  </sourceblocks>
+  <sourceconnections>
+    <link from="S1DI1:newState" to="delay:signal" balanceFactor="0.5"/>
+    <link from="delay:delayedSignal" to="S2DO1:newState" balanceFactor="0.5"/>
+    <link from="S1DI2:newState" to="not:levelA" balanceFactor="0.5"/>
+    <link from="not:level" to="S3DO1:newState" balanceFactor="0.5"/>
+    <link from="S1DI1:newState" to="and:levelA" balanceFactor="0.536"/>
+    <link from="and:level" to="S5DO1:newState" balanceFactor="0.5"/>
+    <link from="S4DI2:newState" to="nand:levelB" balanceFactor="0.5"/>
+    <link from="and:level" to="nand:levelA" balanceFactor="0.5"/>
+    <link from="nand:level" to="S6DO1:newState" balanceFactor="0.5"/>
+    <link from="S1DI2:newState" to="and:levelB" balanceFactor="0.5"/>
+    <link from="S4DI1:newState" to="and:levelC" balanceFactor="0.5"/>
+    <link from="S4DI2:newState" to="and:levelD" balanceFactor="0.5"/>
+  </sourceconnections>
+  <blocks id="Main">
+    <block type="Provider" name="S1DI1" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S1DI1" x="157" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="157" docked="true">
+      <parameters>
+        <param name="Logic">
+          <val>ACTIVE_HIGH</val>
+        </param>
+        <param name="DebounceMode">
+          <val>TIME_MS</val>
+        </param>
+        <param name="DebounceValue">
+          <val>0</val>
+        </param>
+      </parameters>
+    </block>
+    <block type="Function" name="delay" userLabel="" userNote="" function="delayedSignal=DigitalLogic.Delay.delay(signal)" x="166" y="520" height="140" width="70" path="DigitalLogic.Delay.delay" blocksEditorX="418" blocksEditorY="166" docked="false">
+      <parameters>
+        <param name="DelayTime">
+          <val>1000</val>
+        </param>
+        <param name="DelayDistance">
+          <val>0</val>
+        </param>
+        <param name="MaxQueueSize">
+          <val>0</val>
+        </param>
+      </parameters>
+    </block>
+    <block type="Consumer" name="S2DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S2DO1" x="157" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="157" docked="true"/>
+    <block type="Provider" name="S1DI2" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S1DI2" x="234" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="234" docked="true"/>
+    <block type="Provider" name="S4DI1" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S4DI1" x="311" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="311" docked="true"/>
+    <block type="Provider" name="S4DI2" userLabel="" userNote="" event="Connector.DigitalIn.OnChange(newState)" createParameters="S4DI2" x="388" y="7" height="140" width="70" path="Connector.DigitalIn.OnChange" blocksEditorX="6" blocksEditorY="388" docked="true"/>
+    <block type="Consumer" name="S3DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S3DO1" x="234" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="234" docked="true"/>
+    <block type="Function" name="not" userLabel="" userNote="" function="level=DigitalLogic.Gate.not(levelA)" x="251" y="651" height="140" width="70" path="DigitalLogic.Gate.not" blocksEditorX="523" blocksEditorY="251" docked="false"/>
+    <block type="Consumer" name="S5DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S5DO1" x="311" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="311" docked="true"/>
+    <block type="Consumer" name="S6DO1" userLabel="" userNote="" function="Connector.DigitalOut.set(newState)" createParameters="S6DO1" x="388" y="1098" height="140" width="70" path="Connector.DigitalOut.set" blocksEditorX="882" blocksEditorY="388" docked="true"/>
+    <block type="Function" name="and" userLabel="" userNote="" function="level=DigitalLogic.Gate.and(levelA, levelB, levelC, levelD)" x="320" y="473" height="140" width="70" path="DigitalLogic.Gate.and" blocksEditorX="380" blocksEditorY="320" docked="false"/>
+    <block type="Function" name="nand" userLabel="" userNote="" function="level=DigitalLogic.Gate.nand(levelA, levelB, levelC, levelD)" x="388" y="769" height="140" width="70" path="DigitalLogic.Gate.nand" blocksEditorX="618" blocksEditorY="388" docked="false"/>
+  </blocks>
+  <connections>
+    <link from="S1DI1:newState" to="delay:signal" balanceFactor="0.5"/>
+    <link from="delay:delayedSignal" to="S2DO1:newState" balanceFactor="0.5"/>
+    <link from="S1DI2:newState" to="not:levelA" balanceFactor="0.5"/>
+    <link from="not:level" to="S3DO1:newState" balanceFactor="0.5"/>
+    <link from="S1DI1:newState" to="and:levelA" balanceFactor="0.536"/>
+    <link from="and:level" to="S5DO1:newState" balanceFactor="0.5"/>
+    <link from="S4DI2:newState" to="nand:levelB" balanceFactor="0.5"/>
+    <link from="and:level" to="nand:levelA" balanceFactor="0.5"/>
+    <link from="nand:level" to="S6DO1:newState" balanceFactor="0.5"/>
+    <link from="S1DI2:newState" to="and:levelB" balanceFactor="0.5"/>
+    <link from="S4DI1:newState" to="and:levelC" balanceFactor="0.5"/>
+    <link from="S4DI2:newState" to="and:levelD" balanceFactor="0.5"/>
+  </connections>
+</glue>

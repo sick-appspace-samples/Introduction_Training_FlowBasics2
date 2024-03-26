@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<glue>
+  <info>
+    <usage>dflow</usage>
+  </info>
+  <sourceblocks>
+    <block type="Provider" name="OnProcessingFinished" userLabel="" userNote="" event="Training.OnProcessingFinished(numberOfDataCodes)" x="157" y="7" height="140" width="70" path="Training.OnProcessingFinished" blocksEditorX="6" blocksEditorY="157" docked="true"/>
+    <block type="Consumer" name="printValue" userLabel="" userNote="" function="Training.printValue(inString)" x="157" y="1098" height="140" width="70" path="Training.printValue" blocksEditorX="882" blocksEditorY="157" docked="true"/>
+  </sourceblocks>
+  <sourceconnections>
+    <link from="OnProcessingFinished:numberOfDataCodes" to="printValue:inString" balanceFactor="0.5"/>
+  </sourceconnections>
+  <blocks id="Main">
+    <block type="Provider" name="OnProcessingFinished" userLabel="" userNote="" event="Training.OnProcessingFinished(numberOfDataCodes)" x="157" y="7" height="140" width="70" path="Training.OnProcessingFinished" blocksEditorX="6" blocksEditorY="157" docked="true"/>
+    <block type="Consumer" name="printValue" userLabel="" userNote="" function="Training.printValue(inString)" x="157" y="1098" height="140" width="70" path="Training.printValue" blocksEditorX="882" blocksEditorY="157" docked="true"/>
+  </blocks>
+  <connections>
+    <link from="OnProcessingFinished:numberOfDataCodes" to="printValue:inString" balanceFactor="0.5"/>
+  </connections>
+</glue>
